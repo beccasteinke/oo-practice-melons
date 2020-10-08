@@ -53,7 +53,7 @@ def make_melon_types():
     all_melon_types.append(cren)
 
     yw = MelonType('yw', 2013, 'yellow', False, True, 'Yellow Watermelon')
-    ym.add_pairing('ice cream')
+    yw.add_pairing('ice cream')
     all_melon_types.append(yw)
 
     
@@ -94,7 +94,7 @@ class Melon(object):
         self.harvester = harvester
     
     def is_sellable(self):
-        if self.shape_rating > 5 and self.color_rating > 5 and field != 3:
+        if self.shape_rating > 5 and self.color_rating > 5 and self.field != 3:
             return True
         else:
             return False
@@ -116,7 +116,7 @@ def make_melons(melon_types):
     melon_8 = Melon(melons_by_code['musk'], 6, 7, 4, 'Michael')
     melon_9 = Melon(melons_by_code['yw'], 7, 10, 3, 'Sheila')
 
-    harvested_melons.extend(melon_1, melon_2, melon_3, melon_4, melon_5, melon_6, melon_7, melon_8, melon_9)
+    harvested_melons.extend([melon_1, melon_2, melon_3, melon_4, melon_5, melon_6, melon_7, melon_8, melon_9])
     print(harvested_melons)
     return harvested_melons
 
@@ -124,10 +124,9 @@ def get_sellability_report(melons):
     """Given a list of melon object, prints whether each one is sellable."""
 
     #use is_sellable function to populate a selability report
-    for melon in harvested_melons:
-        if is_sellable == True:
-            print(f'Harvested by {harvester} from Field {field} (CAN BE SOLD)')
+    for melon in melons:
+        if melon.is_sellable() == True:
+            print(f'Harvested by {self.harvester} from Field {self.field} (CAN BE SOLD)')
         else:
-            print(f'Harvester by {harvester} from Field {field} (NOT SELLABLE)')
-
+            print(f'Harvester by {self.harvester} from Field {self.field} (NOT SELLABLE)')
 
